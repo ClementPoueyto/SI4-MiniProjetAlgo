@@ -14,8 +14,7 @@ def findMax(edges,vertices):
 
 def main():
     vertices,edges = generate_tree(5,0.2,0.4)
-    print(vertices)
-    print(edges)
+    
     #### Parser d'entrée ####
     # V,E = map(int,input().split())
     # for _ in range(V):
