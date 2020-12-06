@@ -2,6 +2,7 @@ import sys
 import random
 from generate_tree import generate_tree
 from Main import algo
+import time
 
 #genere le tableau des résultats
 #n : nb sommet pour un graphe
@@ -45,10 +46,10 @@ def generate_cell(graphs):
     average=round(float(average/n), 2)
     return average
     
-
+t1 = time.time()
 print(generate_table())
-
-
+t2 = time.time()
+print(t2-t1)
 # resultats : ( je fais gagner 20 min )
 #[[100.0, 100.0, 99.98, 99.93, 99.58, 99.2, 98.48, 96.63, 91.59, 76.65],
 #  [100.0, 100.0, 99.96, 99.93, 99.69, 99.23, 98.58, 97.14, 92.81, 75.35],
