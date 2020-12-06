@@ -12,21 +12,10 @@ def findMax(edges,vertices):
         return assoc[0]
     return max(assoc.keys(),key=lambda x:assoc[x])
 
-def main():
-    vertices,edges = generate_tree(5,0.2,0.4)
-    
-    #### Parser d'entrée ####
-    # V,E = map(int,input().split())
-    # for _ in range(V):
-    #     n,c = map(str,input().split())
-    #     vertices[n]= c
-    # for _ in range(E):
-    #     v1,v2,c = map(str,input().split())
-    #     edges[(v1,v2)] = c
-
+def algo(vertices, edges):
     order = []
     while len(list(filter(lambda x:vertices[x]=="R",vertices.keys())))>0:
-        v = findMax(edges,vertices);
+        v = findMax(edges,vertices)
         order.append(v)
         del vertices[v]
         keys = list(edges.keys())
@@ -41,6 +30,22 @@ def main():
             if keys[i][1]==v:
                 del edges[keys[i]]
             i+=1
-    print(order)
+    return order
+
+def main():
+    vertices,edges = generate_tree(5,0.2,0.4)
+    #### Parser d'entrée ####
+    # V,E = map(int,input().split())
+    # for _ in range(V):
+    #     n,c = map(str,input().split())
+    #     vertices[n]= c
+    # for _ in range(E):
+    #     v1,v2,c = map(str,input().split())
+    #     edges[(v1,v2)] = c
+
+
+    print(algo(vertices,edges))
+
+   
 
 main()

@@ -1,6 +1,9 @@
 import sys
 import random
 
+#n : nombre de sommets
+#p : probabilité pour sommet etre rouge
+#q : probabilité pour arc etre bleu
 def generate_tree(n, p, q):
     nE = n*(n - 1)
     eB = ['B' for _ in range(int(nE * q))]
