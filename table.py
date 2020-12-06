@@ -4,18 +4,28 @@ from generate_tree import generate_tree
 from Main import algo
 
 #genere le tableau des résultats
-def generate_table():
-    n=0
-    p=0
+#n : nb sommet pour un graphe
+#nbCol : nombre de colonnes dans le tableau
+#nbRow : nombre de lignes dans le tableau
+
+def generate_table(n=100,nbCol=10, nbRow=10):
+    incrValueCol = 1/nbCol
+    incrValueRow= 1/nbRow
+    p=0.1
     q=0
-    graphs = generate_graphs(n,p,q)
+    graphs = []
     table = []
-    for j in range (0,10):
+    for j in range (0,nbRow):
         row = []
-        for i in range(0,10):
+        q=0
+        for i in range(0,nbCol):
+            graphs = generate_graphs(n,p,q)
             row.append(generate_cell(graphs))
+            q=round(q+incrValueCol, 2)
         table.append(row)
-    print(table)
+        p=round(p+incrValueRow, 2)
+
+    return table
 
 #genere les n graphs en fonction des probabilités p et q
 def generate_graphs(n,p,q):
@@ -32,11 +42,8 @@ def generate_cell(graphs):
     for i in range (0, n):
         res = algo(graphs[i][0],graphs[i][1])
         average=average+len(res)
-        print(average)
-    average=average/n
+    average=round(float(average/n), 2)
     return average
     
 
-
-graphs = generate_graphs(10,0.4,0.5)
-generate_cell(graphs)
+print(generate_table())
