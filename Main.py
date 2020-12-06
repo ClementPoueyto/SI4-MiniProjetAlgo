@@ -2,10 +2,9 @@ import sys
 from generate_tree import generate_tree
 import time
 
-def findMax(edges,vertices,c):
+def findMax(edges,vertices):
     assoc = {}
     for elm in edges.keys():
-        c+=1
         if edges[elm] == "B" and vertices[elm[0]] == "R" and vertices[elm[1]] == "R":
             assoc[elm[1]] = 1 if elm[1] not in assoc else assoc[elm[1]] + 1
             assoc[elm[0]] = -1 if elm[0] not in assoc else assoc[elm[0]] - 1
@@ -15,22 +14,19 @@ def findMax(edges,vertices,c):
             if not assoc and vertices[elm[1]] == 'R':
                 assoc[elm[1]] = 0
     if not assoc:
-        return list(vertices.keys())[list(vertices.values()).index("R")],c
-    return max(assoc.keys(),key=lambda x:assoc[x]),c
+        return list(vertices.keys())[list(vertices.values()).index("R")]
+    return max(assoc.keys(),key=lambda x:assoc[x])
 
-def algo(vertices, edges):
-    
-    count =0
+def algo(vertices, edges):    
     order = []
     while len(list(filter(lambda x:vertices[x]=="R",vertices.keys())))>0:
-        count+=1
-        v,count = findMax(edges,vertices,count);
+        
+        v = findMax(edges,vertices);
         order.append(v)
         del vertices[v]
         keys = list(filter(lambda x: x[0]==v or x[1]==v,edges.keys()))
         i = 0 
         while i<len(keys):
-            count+=1
             if keys[i][0]==v:
                 if edges[keys[i]] == "R":
                     vertices[keys[i][1]] = "R"
@@ -57,6 +53,6 @@ def main():
 
 
 # t1 = time.time()
-main()
+# main()
 # t2 = time.time()
 # print(t2-t1)
