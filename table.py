@@ -17,11 +17,11 @@ def generate_table(n=100,nbCol=10, nbRow=10):
     q=0
     graphs = []
     table = []
-    for j in range (0,nbRow):
+    for j in range (0,nbRow+1):
         row = []
         q=0
         print(str(j*nbRow)+'%'+" achieved")
-        for i in range(0,nbCol):
+        for i in range(0,nbCol+1):
             graphs = generate_graphs(n,p,q)
             row.append(generate_cell(graphs))
             q=round(q+incrValueCol, 2)
