@@ -3,6 +3,7 @@ import random
 from generate_tree import generate_tree
 from Main import algo
 import time
+import xlsxwriter
 
 #genere le tableau des résultats
 #n : nb sommet pour un graphe
@@ -12,13 +13,14 @@ import time
 def generate_table(n=100,nbCol=10, nbRow=10):
     incrValueCol = 1/nbCol
     incrValueRow= 1/nbRow
-    p=0.1
+    p=0
     q=0
     graphs = []
     table = []
     for j in range (0,nbRow):
         row = []
         q=0
+        print(str(j*nbRow)+'%'+" achieved")
         for i in range(0,nbCol):
             graphs = generate_graphs(n,p,q)
             row.append(generate_cell(graphs))
@@ -45,9 +47,19 @@ def generate_cell(graphs):
         average=average+len(res)
     average=round(float(average/n), 2)
     return average
-    
+
+def fromArrayToExcel(array):
+    workbook = xlsxwriter.Workbook('arrays.xlsx')
+    worksheet = workbook.add_worksheet()
+    row = 0
+    for col, data in enumerate(array):
+        worksheet.write_column(row, col, data)
+
+    workbook.close()
+        
 t1 = time.time()
-print(generate_table())
+fromArrayToExcel(generate_table())
+#print(generate_table())
 t2 = time.time()
 print(t2-t1)
 # resultats : ( je fais gagner 20 min )

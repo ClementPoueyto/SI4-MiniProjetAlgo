@@ -21,7 +21,7 @@ def algo(vertices, edges):
     order = []
     while len(list(filter(lambda x:vertices[x]=="R",vertices.keys())))>0:
         
-        v = findMax(edges,vertices);
+        v = findMax(edges,vertices)
         order.append(v)
         del vertices[v]
         keys = list(filter(lambda x: x[0]==v or x[1]==v,edges.keys()))
@@ -53,6 +53,6 @@ def main():
 
 
 # t1 = time.time()
-# main()
+#main()
 # t2 = time.time()
 # print(t2-t1)
