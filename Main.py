@@ -8,6 +8,10 @@ def findMax(edges,vertices):
         if edges[elm] == "B" and vertices[elm[0]] == "R" and vertices[elm[1]] == "R":
             assoc[elm[1]] = 1 if elm[1] not in assoc else assoc[elm[1]] + 1
             assoc[elm[0]] = -1 if elm[0] not in assoc else assoc[elm[0]] - 1
+        elif edges[elm] == "R" and vertices[elm[0]] == "R" and vertices[elm[1]] == "B":
+            assoc[elm[0]] = 1 if elm[0] not in assoc else assoc[elm[0]] + 1
+        elif edges[elm] == "R" and vertices[elm[0]] == "R" and vertices[elm[1]] == "R":
+            assoc[elm[1]] = -1 if elm[1] not in assoc else assoc[elm[1]] - 1
         else:   
             if not assoc and vertices[elm[0]] == 'R':
                 assoc[elm[0]] = 0
@@ -39,7 +43,7 @@ def algo(vertices, edges):
     return order
 
 def main():
-    vertices,edges = generate_tree(5,0.2,0.4)
+    vertices,edges = generate_tree(1000,1,0)
     #### Parser d'entrée ####
     # V,E = map(int,input().split())
     # for _ in range(V):
@@ -48,8 +52,8 @@ def main():
     # for _ in range(E):
     #     v1,v2,c = map(str,input().split())
     #     edges[(v1,v2)] = c
-
-    print(algo(vertices,edges))
+    algo(vertices,edges)
+    # print(algo(vertices,edges))
 
 
 # t1 = time.time()
